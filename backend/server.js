@@ -9,7 +9,7 @@ const app = express();
 
 // Configuração do CORS para produção
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://127.0.0.1:5500'],
+  origin: ['https://ecoresidencial.vercel.app/', 'https://ecoresidencialtarbalho.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
