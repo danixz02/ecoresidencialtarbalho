@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <title>Meu Perfil - EcoResidencial</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="#" class="logo">EcoResidencial</a>
+        <!-- Botão do menu hambúrguer -->
+        <div class="burger" id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="menu" id="menu">
+          <li><a href="../../index.html">Início</a></li>
+          <li><a href="../../index.html#sobre">Sobre</a></li>
+          <li><a href="../pages/products.html">Produtos</a></li>
+          <li><a href="../pages/userPage.html">Conta</a></li>
+        </ul>
+    </header>
+
+    <main id="profile">
+      <div class="profile-container">
+        <div class="perfil">
+          <input type="file" id="profilePictureInput" accept="image/*" />
+          <label for="profilePictureInput" id="profilePictureLabel">
+            <img id="profileImage" src="" alt="Imagem de perfil" />
+            <span class="hoverText">Clique para alterar a imagem</span>
+          </label>
+        </div>
+
+        <div class="profileInfo">
+          <h2>Informações do Perfil</h2>
+          <p>Nome: <span id="userName">Nome do Usuário</span></p>
+          <p>Email: <span id="userEmail">Email do Usuário</span></p>
+          <div class="profile-actions">
+            <button class="btn" id="btnEditar">Editar Perfil</button>
+            <button class="btn btn-danger" id="btnLogout">Sair da Conta</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="adicionarMateriais">
+        <h3>Adicionar Materiais</h3>
+        <form id="materialForm">
+          <div class="form-group">
+            <label for="materialName">Nome do Material</label>
+            <input type="text" id="materialName" placeholder="Nome do Material" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="materialDescription">Descrição</label>
+            <input type="text" id="materialDescription" placeholder="Descrição" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="materialQuantity">Quantidade</label>
+            <input type="number" id="materialQuantity" placeholder="Quantidade" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="materialImage">Imagem</label>
+            <input type="file" id="materialImage" accept="image/*" />
+          </div>
+          
+          <div class="form-group">
+            <label for="contactName">Número de Contato</label>
+            <input type="text" id="contactName" placeholder="Contato" required />
+          </div>
+          
+          <button type="submit" class="btn" id="btnAdd">Adicionar Material</button>
+        </form>
+      </div>
+
+      <div class="lista-materiais">
+        <h3>Meus Materiais</h3>
+        <ul id="materiaisList"></ul>
+      </div>
+    </main>
+
+    <!-- Modal de Edição de Perfil -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Perfil</h2>
+        <form id="editProfileForm">
+          <div class="form-group">
+            <label for="editName">Nome</label>
+            <input type="text" id="editName" required />
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input type="email" id="editEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="editPassword">Nova Senha (deixe em branco para manter a atual)</label>
+            <input type="password" id="editPassword" />
+          </div>
+          <button type="submit" class="btn">Salvar Alterações</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Verificar se o usuário está logado
+      function verificarLogin() {
+        const usuario = localStorage.getItem('usuario');
+        if (!usuario) {
+          window.location.href = 'login.html';
+          return;
+        }
+        return JSON.parse(usuario);
+      }
+
+      // Função para fazer logout
+      function fazerLogout() {
+        localStorage.removeItem('usuario');
+        window.location.href = 'login.html';
+      }
+
+      // Função para abrir o modal
+      function abrirModal() {
+        const modal = document.getElementById('editModal');
+        const usuario = verificarLogin();
+        
+        document.getElementById('editName').value = usuario.nome;
+        document.getElementById('editEmail').value = usuario.email;
+        
+        modal.style.display = 'block';
+      }
+
+      // Função para fechar o modal
+      function fecharModal() {
+        const modal = document.getElementById('editModal');
+        modal.style.display = 'none';
+      }
+
+      // Verificar tipo de usuário e mostrar/ocultar formulário
+      function verificarTipoUsuario() {
+        const usuario = verificarLogin();
+        const formContainer = document.querySelector('.adicionarMateriais');
+        
+        if (usuario.tipo !== 'condominio') {
+          formContainer.style.display = 'none';
+        }
+      }
+
+      // Carregar dados do usuário
+      function carregarDadosUsuario() {
+        const usuario = verificarLogin();
+        document.getElementById('userName').textContent = usuario.nome;
+        document.getElementById('userEmail').textContent = usuario.email;
+      }
+
+      // Função para carregar a foto de perfil
+      function carregarFotoPerfil() {
+        const usuario = verificarLogin();
+        const profileImage = document.getElementById('profileImage');
+        
+        if (usuario.fotoPerfil) {
+          profileImage.src = `http://localhost:3000/uploads/${usuario.fotoPerfil}`;
+        } else {
+          profileImage.src = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg';
+        }
+      }
+
+      // Função para atualizar a foto de perfil
+      async function atualizarFotoPerfil(file) {
+        const usuario = verificarLogin();
+        const formData = new FormData();
+        formData.append('fotoPerfil', file);
+        formData.append('usuarioId', usuario.id);
+
+        try {
+          const response = await fetch('http://localhost:3000/atualizar-foto-perfil', {
+            method: 'POST',
+            body: formData
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            usuario.fotoPerfil = data.fotoPerfil;
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+            carregarFotoPerfil();
+            alert('Foto de perfil atualizada com sucesso!');
+          } else {
+            alert(data.mensagem || 'Erro ao atualizar foto de perfil');
+          }
+        } catch (error) {
+          console.error('Erro:', error);
+          alert('Erro ao atualizar foto de perfil. Tente novamente.');
+        }
+      }
+
+      // Função para buscar e exibir materiais do usuário
+      async function carregarMateriais() {
+        const usuario = verificarLogin();
+        const lista = document.getElementById('materiaisList');
+        lista.innerHTML = 'Carregando...';
+
+        try {
+          const response = await fetch('http://localhost:3000/materiais');
+          const materiais = await response.json();
+
+          // Filtra só os materiais do usuário logado
+          const meusMateriais = materiais.filter(m => m.usuarioId == usuario.id);
+
+          if (meusMateriais.length === 0) {
+            lista.innerHTML = '<li>Nenhum material cadastrado.</li>';
+            return;
+          }
+
+          lista.innerHTML = '';
+          meusMateriais.forEach(material => {
+            const li = document.createElement('li');
+            li.textContent = `${material.nome} - ${material.descricao} (${material.quantidade})`;
+
+            // Botão excluir só para condominio/reciclador
+            if (usuario.tipo === 'condominio' || usuario.tipo === 'reciclador') {
+              const btn = document.createElement('button');
+              btn.textContent = 'Excluir';
+              btn.className = 'btn btn-danger';
+              btn.onclick = async () => {
+                if (confirm('Tem certeza que deseja excluir este material?')) {
+                  await excluirMaterial(material.dataCadastro);
+                }
+              };
+              li.appendChild(btn);
+            }
+
+            lista.appendChild(li);
+          });
+        } catch (error) {
+          lista.innerHTML = '<li>Erro ao carregar materiais.</li>';
+        }
+      }
+
+      // Função para excluir material
+      async function excluirMaterial(materialId) {
+        const usuario = verificarLogin();
+        try {
+          const response = await fetch(`http://localhost:3000/remover-material/${materialId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ usuario })
+          });
+          const resultado = await response.json();
+          alert(resultado.mensagem);
+          carregarMateriais();
+        } catch (error) {
+          alert('Erro ao excluir material.');
+        }
+      }
+
+      // Inicializar página
+      document.addEventListener('DOMContentLoaded', () => {
+        verificarTipoUsuario();
+        carregarDadosUsuario();
+        carregarFotoPerfil();
+        carregarMateriais();
+
+        // Eventos
+        document.getElementById('profilePictureInput').addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            if (!file.type.startsWith('image/')) {
+              alert('Por favor, selecione apenas arquivos de imagem.');
+              return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+              alert('A imagem deve ter no máximo 5MB.');
+              return;
+            }
+
+            atualizarFotoPerfil(file);
+          }
+        });
+
+        document.getElementById('btnLogout').addEventListener('click', fazerLogout);
+        document.getElementById('btnEditar').addEventListener('click', abrirModal);
+        document.querySelector('.close').addEventListener('click', fecharModal);
+
+        window.addEventListener('click', (e) => {
+          const modal = document.getElementById('editModal');
+          if (e.target === modal) {
+            fecharModal();
+          }
+        });
+
+        // Formulário de edição
+        document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const usuario = verificarLogin();
+          const dadosAtualizados = {
+            id: usuario.id,
+            nome: document.getElementById('editName').value,
+            email: document.getElementById('editEmail').value,
+            tipo: usuario.tipo
+          };
+
+          const novaSenha = document.getElementById('editPassword').value;
+          if (novaSenha) {
+            dadosAtualizados.senha = novaSenha;
+          }
+
+          try {
+            const response = await fetch('http://localhost:3000/atualizar-perfil', {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(dadosAtualizados)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              const usuarioAtualizado = { ...usuario, ...dadosAtualizados };
+              delete usuarioAtualizado.senha;
+              localStorage.setItem('usuario', JSON.stringify(usuarioAtualizado));
+              carregarDadosUsuario();
+              fecharModal();
+              alert('Perfil atualizado com sucesso!');
+            } else {
+              alert(data.mensagem || 'Erro ao atualizar perfil');
+            }
+          } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao atualizar perfil. Tente novamente.');
+          }
+        });
+
+        // Formulário de materiais
+        document.getElementById("materialForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const usuario = verificarLogin();
+          const formData = new FormData();
+
+          // Pegue os valores dos campos manualmente e use os nomes esperados pelo backend
+          formData.append('nome', document.getElementById('materialName').value);
+          formData.append('descricao', document.getElementById('materialDescription').value);
+          formData.append('quantidade', document.getElementById('materialQuantity').value);
+          formData.append('contato', document.getElementById('contactName').value);
+          formData.append('usuario', JSON.stringify(usuario));
+
+          // Adicione a imagem se houver
+          const imagem = document.getElementById('materialImage').files[0];
+          if (imagem) {
+            formData.append('imagem', imagem);
+          }
+
+          try {
+            const response = await fetch("http://localhost:3000/adicionar", {
+              method: "POST",
+              body: formData,
+            });
+
+            const resultado = await response.json();
+            alert(resultado.mensagem);
+            this.reset();
+            carregarMateriais(); // Atualiza a lista após adicionar
+          } catch (error) {
+            console.error("Erro ao enviar dados:", error);
+            alert("Erro ao enviar os dados. Tente novamente.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

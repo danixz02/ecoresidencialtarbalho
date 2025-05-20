@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <title>Produtos - EcoResidencial</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="#" class="logo">EcoResidencial</a>
+        <!-- Botão do menu hambúrguer -->
+        <div class="burger" id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="menu" id="menu">
+          <li><a href="../../index.html">Início</a></li>
+          <li><a href="../../index.html#sobre">Sobre</a></li>
+          <li><a href="../pages/products.html">Produtos</a></li>
+          <li><a href="../pages/userPage.html">Conta</a></li>
+        </ul>
+    </header>
+
+    <main id="materiaisDisponíveis">
+      <h2>Materiais Disponíveis</h2>
+      <section id="cardContainer">
+        <!-- Os cards serão inseridos aqui via JavaScript -->
+      </section>
+    </main>
+
+    <script>
+      async function carregarMateriais() {
+        try {
+          const response = await fetch('http://localhost:3000/materiais');
+          const materiais = await response.json();
+          const cardContainer = document.getElementById('cardContainer');
+
+          if (materiais.length === 0) {
+            cardContainer.innerHTML = `
+              <div class="no-materials">
+                <h3>Nenhum material disponível no momento</h3>
+                <p>Seja o primeiro a cadastrar um material!</p>
+              </div>
+            `;
+            return;
+          }
+
+          cardContainer.innerHTML = materiais.map(material => `
+            <div class="material-card">
+              <img 
+                src="${material.imagem ? `http://localhost:3000/uploads/${material.imagem}` : 'https://via.placeholder.com/300x200?text=Sem+Imagem'}" 
+                alt="${material.nome}"
+                class="material-image"
+              />
+              <div class="material-info">
+                <h3>${material.nome}</h3>
+                <p><strong>Descrição:</strong> ${material.descricao}</p>
+                <p><strong>Quantidade:</strong> ${material.quantidade}</p>
+                <div class="material-contact">
+                  <a href="https://wa.me/${material.contato}" class="btn">
+                    Entrar em contato
+                  </a>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        } catch (error) {
+          console.error('Erro ao carregar materiais:', error);
+          document.getElementById('cardContainer').innerHTML = `
+            <div class="no-materials">
+              <h3>Erro ao carregar os materiais</h3>
+              <p>Tente novamente mais tarde</p>
+            </div>
+          `;
+        }
+      }
+
+      // Carregar materiais quando a página for carregada
+      document.addEventListener('DOMContentLoaded', carregarMateriais);
+    </script>
+
+    <footer>
+      <div class="footerright">
+        <a href="#" class="logo">EcoResidencial</a>
+      </div>
+      
+      <div class="footerCenter">
+        <ul>
+          <li>Menus</li>
+          <li><a href="../../index.html">Início</a></li>
+          <li><a href="../../index.html#sobre">Sobre</a></li>
+          <li><a href="../pages/products.html">Produtos</a></li>
+          <li><a href="../pages/userPage.html">Conta</a></li>
+      </div>
+
+      <div class="footerleft">
+        <ul>
+          <li>Contato</li>
+          <li>(99) 99999-0000</li>
+          <li>contato@ecoresidencial.com.br </li>
+        </ul>
+      </div>
+    </footer>
+
+    <p class="copy">EcoResidencial – Todos os direitos reservados – 2025</p>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <title>Login - EcoResidencial</title>
+  </head>
+  <body>
+
+    <main>
+      <div class="auth-container">
+        <div id="loginForm">
+          <h2>Login</h2>
+          <form id="login">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" required />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Senha</label>
+              <input type="password" id="loginPassword" required />
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+          </form>
+          <div class="auth-toggle">
+            <p>Não tem uma conta? <a href="#" id="showRegister">Registre-se</a></p>
+          </div>
+        </div>
+
+        <div id="registerForm" style="display: none;">
+          <h2>Registro</h2>
+          <form id="register">
+            <div class="form-group">
+              <label for="registerName">Nome</label>
+              <input type="text" id="registerName" required />
+            </div>
+            <div class="form-group">
+              <label for="registerEmail">Email</label>
+              <input type="email" id="registerEmail" required />
+            </div>
+            <div class="form-group">
+              <label for="registerPassword">Senha</label>
+              <input type="password" id="registerPassword" required />
+            </div>
+            <div class="form-group">
+              <label for="registerType">Tipo de Conta</label>
+              <select id="registerType" required>
+                <option value="usuario">Usuário</option>
+                <option value="condominio">Condomínio/Reciclador</option>
+              </select>
+            </div>
+            <button type="submit" class="btn">Registrar</button>
+          </form>
+          <div class="auth-toggle">
+            <p>Já tem uma conta? <a href="#" id="showLogin">Faça login</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Alternar entre formulários de login e registro
+      document.getElementById('showRegister').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
+      });
+
+      document.getElementById('showLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+      });
+
+      // Função para salvar dados do usuário no localStorage
+      function salvarUsuario(usuario) {
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+      }
+
+      // Função para verificar se o usuário está logado
+      function verificarLogin() {
+        const usuario = localStorage.getItem('usuario');
+        if (usuario) {
+          window.location.href = 'userPage.html';
+        }
+      }
+
+      // Verificar login ao carregar a página
+      verificarLogin();
+
+      // Manipular login
+      document.getElementById('login').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const senha = document.getElementById('loginPassword').value;
+
+        try {
+          const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, senha })
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            salvarUsuario(data);
+            window.location.href = 'userPage.html';
+          } else {
+            alert(data.mensagem || 'Erro ao fazer login');
+          }
+        } catch (error) {
+          console.error('Erro:', error);
+          alert('Erro ao fazer login. Tente novamente.');
+        }
+      });
+
+      // Manipular registro
+      document.getElementById('register').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById('registerName').value;
+        const email = document.getElementById('registerEmail').value;
+        const senha = document.getElementById('registerPassword').value;
+        const tipo = document.getElementById('registerType').value;
+
+        try {
+          const response = await fetch('http://localhost:3000/registro', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nome, email, senha, tipo })
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            alert('Registro realizado com sucesso! Faça login para continuar.');
+            document.getElementById('showLogin').click();
+          } else {
+            alert(data.mensagem || 'Erro ao registrar');
+          }
+        } catch (error) {
+          console.error('Erro:', error);
+          alert('Erro ao registrar. Tente novamente.');
+        }
+      });
+    </script>
+  </body>
+</html>

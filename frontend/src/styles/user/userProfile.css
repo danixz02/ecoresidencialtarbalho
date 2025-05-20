@@ -1,0 +1,274 @@
+#profile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 8rem;
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-container .perfil {
+  width: 250px;
+  height: 250px;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#profileImage {
+  width: 190px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+#profilePictureLabel {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.hoverText {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--color-white);
+  padding: 1rem;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 1.2rem;
+}
+
+#profilePictureLabel:hover .hoverText {
+  opacity: 1;
+}
+
+#profilePictureInput {
+  display: none;
+}
+
+.profileInfo {
+  height: 220px;
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profileInfo p {
+  font-size: 2rem;
+  color: var(--text-color);
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: var(--color-gray-light);
+  border: 1px solid var(--color-gray);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.btn-danger {
+  border: 1px solid #c82333;
+  background: #dc354637;
+}
+
+.btn-danger:hover {
+  color: var(--primary-color);
+  background: #c82333;
+  border: 1px solid #c82333;
+}
+
+.adicionarMateriais {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.adicionarMateriais h3 {
+  font-size: 2.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+#materialForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+#materialForm input[type="text"],
+#materialForm input[type="number"],
+#materialForm input[type="file"] {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray);
+  background: var(--color-gray-light);
+  font-size: 1.9rem;
+}
+
+#materialForm label {
+  font-size: 1.9rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+#materialForm button[type="submit"] {
+  grid-column: span 2;
+  padding: 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+  background: var(--secondary-color);
+}
+
+#materialForm button[type="submit"]:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--color-white);
+  margin: 10% auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray);
+  background: var(--color-gray-light);
+}
+
+.lista-materiais h3 {
+  font-size: 2.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+.lista-materiais {
+  margin-top: 8rem;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--primary-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lista-materiais ul {
+  list-style: none;
+  padding: 0;
+  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: start;
+
+}
+
+.lista-materiais ul li {
+  display: flex;
+  gap: 30px;
+  padding: 1.9rem;
+  font-size: 2rem;
+  color: var(--text-color);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: .3s ease;
+}
+
+.lista-materiais ul li:hover {
+  transform: translateY(-2px);
+  background: #c8233312;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+  }
+
+  #materialForm {
+    grid-template-columns: 1fr;
+  }
+
+  #materialForm button[type="submit"] {
+    grid-column: span 1;
+  }
+}

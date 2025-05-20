@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../frontend/src/styles/global.css" />
+    <title>EcoResidencial</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="#" class="logo">EcoResidencial</a>
+        <!-- Botão do menu hambúrguer -->
+        <div class="burger" id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="menu" id="menu">
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="../frontend/src/pages/products.html">Produtos</a></li>
+          <li><a href="../frontend/src/pages/userPage.html">Conta</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <div class="heroContent">
+            <h1>Bem-vindo ao <br><span class="highlight">EcoResidencial</span></h1>
+            <p>
+              O EcoResidencial é uma plataforma digital criada 
+              para promover a destinação correta de resíduos 
+              recicláveis <br> em condomínios residenciais.
+            </p>
+            <a href="../frontend/src/pages/login.html" class="btn">Cadastre-se</a>
+        </div>
+
+        <div class="heroImage">
+            <img src="../frontend/src/assets/BACKGROUND.svg" alt="Imagem de destaque" />
+    </section>
+
+    <section id="sobre">
+      <img src="../frontend/src/assets/img-sobre.png" alt="Imagem de destaque" />
+
+      <div class="sobreContent">
+        <h2>Sobre nós</h2>
+        <p>
+          O EcoResidencial é uma plataforma digital criada para promover a destinação 
+          correta de resíduos recicláveis em condomínios residenciais. Nosso objetivo é 
+          conectar condomínios <br> que desejam descartar seus resíduos de forma responsável 
+          a empresas e indivíduos que <br> atuam na coleta e reciclagem desses materiais. <br><br>
+
+          Por meio do cadastro gratuito, os condomínios podem criar perfis, anunciar os 
+          resíduos disponíveis e agendar coletas com recicladores, tudo de forma prática e 
+          acessível. Além <br> de contribuir com o meio ambiente, essa iniciativa também 
+          incentiva a geração de renda <br> para os condomínios envolvidos. <br><br>
+
+          Acreditamos que a sustentabilidade começa em casa e o EcoResidencial vem 
+          para facilitar esse processo, tornando a reciclagem mais eficiente, colaborativa 
+          e acessível a todos.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="ctaContent">
+        <h2>Junte-se a nós e faça a diferença!</h2>
+        <p>
+          Cadastre-se agora mesmo e comece a contribuir para um futuro <br> mais sustentável.
+        </p>
+        <a href="register.html" class="btn">Cadastre-se</a>
+      </div>
+
+      <img src="./src/assets/OBJECTS-cta.svg" alt="">
+    </section>
+
+    <footer>
+      <div class="footerright">
+        <a href="#" class="logo">EcoResidencial</a>
+      </div>
+      
+      <div class="footerCenter">
+        <ul>
+          <li>Menus</li>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="../frontend/src/pages/products.html">Produtos</a></li>
+          <li><a href="./src/pages/userPage.html">Conta</a></li>
+      </div>
+
+      <div class="footerleft">
+        <ul>
+          <li>Contato</li>
+          <li>(99) 99999-0000</li>
+          <li>contato@ecoresidencial.com.br </li>
+        </ul>
+      </div>
+    </footer>
+
+    <p class="copy">EcoResidencial – Todos os direitos reservados – 2025</p>
+
+<script>
+const burger = document.getElementById("burger");
+const menu = document.getElementById("menu");
+
+burger.addEventListener("click", () => {
+  menu.classList.toggle("active");
+  burger.classList.toggle("toggle");
+});
+</script>
+
+  </body>
+</html>

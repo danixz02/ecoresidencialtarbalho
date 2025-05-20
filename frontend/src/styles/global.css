@@ -1,0 +1,14 @@
+/* Global */
+@import url("./globalStyle/globalStyle.css");
+
+/* Partials */
+@import url("./variaveis/variaveis.css");
+@import url("./access/login.css");
+@import url("./globalStyle/footer.css");
+@import url("./partials/cta.css");
+@import url("./partials/home.css");
+@import url("./partials/sobre.css");
+@import url("./partials/products.css");
+@import url("./user/userProfile.css");
+@import url("./user/modal.css");
+
