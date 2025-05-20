@@ -1,0 +1,182 @@
+[
+  {
+    "nome": "Papelão Kraft",
+    "descricao": "Caixas de papelão usadas, embalagens de encomenda.",
+    "quantidade": "8",
+    "contato": "11987654321",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "https://www.artpelsaocarlos.com.br/imagens/informacoes/caixa-papelao-ondulado-kraft-01.jpg",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Garrafa PET",
+    "descricao": "Garrafas de refrigerante, água mineral, sucos.",
+    "quantidade": "25",
+    "contato": "11999999999",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000002.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Vidro Transparente",
+    "descricao": "Potes de conserva, garrafas de vidro, frascos de perfume.",
+    "quantidade": "15",
+    "contato": "11988887777",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000003.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Lata de Alumínio",
+    "descricao": "Latas de refrigerante e cerveja.",
+    "quantidade": "40",
+    "contato": "11982223333",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000004.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Plástico PEADe44",
+    "descricao": "Embalagens de leite, detergente, shampoo, potes de maionese, tampas.",
+    "quantidade": "12",
+    "contato": "1111111111",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-676899689.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Metal Ferroso",
+    "descricao": "Tampas de garrafa, peças de ferro e latas de alimentos.",
+    "quantidade": "9",
+    "contato": "11976543210",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000005.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Papel Jornal",
+    "descricao": "Jornais antigos, panfletos, papel de revista.",
+    "quantidade": "30",
+    "contato": "11970000000",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000006.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Caixa Tetrapak",
+    "descricao": "Caixas de leite, suco e creme de leite longa vida.",
+    "quantidade": "18",
+    "contato": "11971112222",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000007.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Papel Sulfite",
+    "descricao": "Folhas A4 usadas, documentos impressos.",
+    "quantidade": "50",
+    "contato": "11973334444",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000008.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Isopor",
+    "descricao": "Bandejas de supermercado, embalagens de eletrodomésticos.",
+    "quantidade": "22",
+    "contato": "11978889999",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000009.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Tecido Algodão",
+    "descricao": "Roupas usadas, retalhos de algodão.",
+    "quantidade": "14",
+    "contato": "11972223333",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000010.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Fio de Cobre",
+    "descricao": "Fios de eletricidade descascados.",
+    "quantidade": "6",
+    "contato": "11974445555",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000011.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Embalagem de Plástico",
+    "descricao": "Sacos plásticos, pacotes de alimentos, filmes plásticos.",
+    "quantidade": "27",
+    "contato": "11976667777",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000012.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Tubo de Pasta",
+    "descricao": "Tubos de creme dental e pomadas vazios.",
+    "quantidade": "10",
+    "contato": "11973335555",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000013.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Bateria Usada",
+    "descricao": "Pilha e bateria de controle, lanternas e celulares.",
+    "quantidade": "13",
+    "contato": "11975557777",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000014.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Pneu Inservível",
+    "descricao": "Pneus usados e descartados, sem possibilidade de uso.",
+    "quantidade": "4",
+    "contato": "11979998888",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000015.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Resto de Madeira",
+    "descricao": "Paletes quebrados, sobras de marcenaria.",
+    "quantidade": "11",
+    "contato": "11972225555",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000016.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Resíduo Eletrônico",
+    "descricao": "Peças de computadores, teclados, mouses e placas.",
+    "quantidade": "5",
+    "contato": "11978887766",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000017.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "CDs e DVDs",
+    "descricao": "Discos antigos de música, filmes, backups.",
+    "quantidade": "19",
+    "contato": "11973332211",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000018.png",
+    "usuarioId": "1747592094189"
+  },
+  {
+    "nome": "Óleo de Cozinha",
+    "descricao": "Óleo usado armazenado em garrafas PET.",
+    "quantidade": "7",
+    "contato": "11970001111",
+    "dataCadastro": "2025-05-18T19:18:03.558Z",
+    "imagem": "1747595883553-100000019.png",
+    "usuarioId": "1747592094189"
+  }
+]
